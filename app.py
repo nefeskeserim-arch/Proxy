@@ -4,6 +4,7 @@ import threading
 import time
 from datetime import datetime, timedelta
 import random
+import os
 
 app = Flask(__name__)
 
@@ -163,5 +164,7 @@ def get_verified_proxy():
     # Eğer doğrulanmış proxy bulunamazsa, rastgele döndür
     return get_random_proxy()
 
+# Render için gerekli ayarlar
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
